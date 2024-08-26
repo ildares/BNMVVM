@@ -7,6 +7,9 @@ using System.Windows.Input;
 
 namespace BNMVVM.Command
 {
+    /// <summary>
+    /// Класс команд управления
+    /// </summary>
     public class RelayCommand : ICommand
     {
         private Action<object> execute;

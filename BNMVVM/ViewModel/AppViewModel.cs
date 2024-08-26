@@ -14,12 +14,19 @@ using System.Windows;
 
 
 namespace BNMVVM.ViewModel
-{
+{/// <summary>
+/// Класс модели представления
+/// </summary>
     public class AppViewModel : INotifyPropertyChanged
     {
         private IBaseElement? selectedElement;
-
+        /// <summary>
+        /// список задач и документов
+        /// </summary>
         public ObservableCollection<IBaseElement> Elements { get; set; }
+        /// <summary>
+        /// Выбранный элемент из списка задач и элементов
+        /// </summary>
         public IBaseElement? SelectedElement
         {
             get { return selectedElement; }
@@ -43,14 +50,19 @@ namespace BNMVVM.ViewModel
             };
 
         }
-
+        /// <summary>
+        /// Делегат метода, который будет обрабатывать событие PrpertyChanged
+        /// </summary>
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
-        //private RelayCommand openCommand;
+        #region Команды
+        /// <summary>
+        /// Команда открытия документа или задачи
+        /// </summary>
         public RelayCommand OpenCommand
         {
             get
@@ -62,6 +74,7 @@ namespace BNMVVM.ViewModel
                       if (obj != null)
                       {
                           var e = obj as IBaseElement;
+                          selectedElement = e;
                           if (e.Type == "Документ")
                           {
                               DocumentWindow dw = new DocumentWindow(obj as Document);
@@ -76,10 +89,12 @@ namespace BNMVVM.ViewModel
                           }
                       }
                   },
-                 (obj) => true);
+                 (obj) => obj!=null);
             }
         }
-
+        /// <summary>
+        /// Команда подписи документа
+        /// </summary>
         public RelayCommand SubscribeCommand
         {
             get
@@ -93,9 +108,12 @@ namespace BNMVVM.ViewModel
                         (obj as Document).Signature = Guid.NewGuid();
                     }
                 },
-                 (obj) => true);
+                 (obj) => obj!=null);
             }
         }
+        /// <summary>
+        /// Команда создания нового документа
+        /// </summary>
         public RelayCommand NewDocumentCommand
         {
             get
@@ -112,6 +130,9 @@ namespace BNMVVM.ViewModel
                  (obj) => true);
             }
         }
+        /// <summary>
+        /// Команда создания новой задачи
+        /// </summary>
         public RelayCommand NewGoalCommand
         {
             get
@@ -128,5 +149,6 @@ namespace BNMVVM.ViewModel
                  (obj) => true);
             }
         }
+        #endregion
     }
 }

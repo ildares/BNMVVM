@@ -10,10 +10,12 @@ using BNMVVM.Common;
 
 namespace BNMVVM.Model
 {
- 
+ /// <summary>
+ /// Класс задачи
+ /// </summary>
     public class Goal : INotifyPropertyChanged, IBaseElement
     {
-        private int id;
+        private int? id;
         private string name = string.Empty;
         private string content = string.Empty;
         private GoalStatusEnum status;
@@ -25,7 +27,7 @@ namespace BNMVVM.Model
                 return "Задача";
             }
         }
-        public int ID
+        public int? ID
         {
             get { return id; }
             set
@@ -62,26 +64,14 @@ namespace BNMVVM.Model
                 OnPropertyChanged("Status");
             }
         }
-
+        /// <summary>
+        /// Делегат метода, который будет обрабатывать событие PrpertyChanged
+        /// </summary>
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
-        /*private RelayCommand openCommand;
-        public RelayCommand OpenCommand
-        {
-            get
-            {
-                return openCommand ??
-                  (openCommand = new RelayCommand(obj =>
-                  {
-                      GoalWindow dw = new GoalWindow(obj as Goal);
-                      dw.Show();
-                  },
-                 (obj) => true));
-            }
-        }*/
     }
 }

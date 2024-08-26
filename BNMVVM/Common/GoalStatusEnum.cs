@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BNMVVM.Common
 {
+    /// <summary>
+    /// Перечисление возможных состояний задачи
+    /// </summary>
     public enum GoalStatusEnum
     {
         inProcess,

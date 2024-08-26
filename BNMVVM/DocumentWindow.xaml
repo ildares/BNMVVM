@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BNMVVM"
         mc:Ignorable="d"
-        Title="DocumentWindow" Height="450" Width="800">
+        Title="DocumentWindow" Height="300" Width="600">
     <Window.Resources>
         <Style TargetType="TextBox">
             <Setter Property="IsEnabled" Value="False" />
@@ -46,7 +46,7 @@
                     Text="{Binding ID}"/>
             <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  VerticalAlignment="Center" Height="18" 
                     Text="{Binding Name}"/>
-            <TextBox Grid.Row="2" Grid.Column="1"   VerticalAlignment="Center" Height="18" 
+            <TextBox Grid.Row="2" Grid.Column="1"  IsEnabled="False" VerticalAlignment="Center" Height="18" 
                     Text="{Binding Signature}"/>
             <Button Grid.Column="2" Content="Подписать" Grid.Row="2" VerticalAlignment="Center" Height="20"
                     Command="{Binding Source={StaticResource AppViewModel}, Path=SubscribeCommand}"

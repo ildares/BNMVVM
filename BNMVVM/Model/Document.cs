@@ -9,6 +9,9 @@ using BNMVVM.Interface;
 
 namespace BNMVVM.Model
 {
+    /// <summary>
+    /// Класс документа
+    /// </summary>
     public class Document : INotifyPropertyChanged, IBaseElement
     {
         private int? id;
@@ -61,7 +64,9 @@ namespace BNMVVM.Model
                 OnPropertyChanged("Signature");
             }
         }
-
+        /// <summary>
+        /// Делегат метода, который будет обрабатывать событие PrpertyChanged
+        /// </summary>
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
