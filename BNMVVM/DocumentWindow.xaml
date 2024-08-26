@@ -6,6 +6,26 @@
         xmlns:local="clr-namespace:BNMVVM"
         mc:Ignorable="d"
         Title="DocumentWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="IsEnabled" Value="False" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Signature}"
+                        Value ="{x:Null}">
+                    <Setter Property="IsEnabled" Value="True"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="IsEnabled" Value="False" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Signature}"
+                        Value ="{x:Null}">
+                    <Setter Property="IsEnabled" Value="True"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid Margin="10">
             <Grid.RowDefinitions>
@@ -27,8 +47,10 @@
             <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  VerticalAlignment="Center" Height="18" 
                     Text="{Binding Name}"/>
             <TextBox Grid.Row="2" Grid.Column="1"   VerticalAlignment="Center" Height="18" 
-                    Text="{Binding GUID}"/>
-            <Button Grid.Column="2" Content="Подписать" Grid.Row="2" VerticalAlignment="Center" Height="20"/>
+                    Text="{Binding Signature}"/>
+            <Button Grid.Column="2" Content="Подписать" Grid.Row="2" VerticalAlignment="Center" Height="20"
+                    Command="{Binding Source={StaticResource AppViewModel}, Path=SubscribeCommand}"
+                    CommandParameter ="{Binding Source={StaticResource AppViewModel}, Path=SelectedElement}"/>
             <TextBox Grid.ColumnSpan="3" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="3" TextWrapping="Wrap"  VerticalAlignment="Stretch"
                     Text="{Binding Content}"/>
         </Grid>

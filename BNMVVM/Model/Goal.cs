@@ -6,20 +6,17 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using BNMVVM.Common;
 
 namespace BNMVVM.Model
 {
-    public enum GoalStatus
-    {
-        inProcess,
-        isDone
-    }
+ 
     public class Goal : INotifyPropertyChanged, IBaseElement
     {
         private int id;
         private string name = string.Empty;
         private string content = string.Empty;
-        private GoalStatus? status;
+        private GoalStatusEnum status;
 
         public string Type
         {
@@ -56,7 +53,7 @@ namespace BNMVVM.Model
             }
         }
 
-        public GoalStatus? Status
+        public GoalStatusEnum Status
         {
             get { return status; }
             set

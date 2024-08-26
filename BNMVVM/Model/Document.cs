@@ -11,10 +11,10 @@ namespace BNMVVM.Model
 {
     public class Document : INotifyPropertyChanged, IBaseElement
     {
-        private int id;
+        private int? id;
         private string name = string.Empty;
         private string content = string.Empty;
-        private Guid? signature;
+        private Guid? signature = null;
 
         public string Type
         {
@@ -24,7 +24,7 @@ namespace BNMVVM.Model
             }
         }
 
-        public int ID
+        public int? ID
         {
             get { return id; }
             set
@@ -68,24 +68,5 @@ namespace BNMVVM.Model
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
-
-        /*private RelayCommand openCommand;
-        public RelayCommand OpenCommand
-        {
-            get
-            {
-                return openCommand ??
-                  (openCommand = new RelayCommand(obj =>
-                  {
-                      //openedDocument = obj as Document;
-                      //openedDocument.Name = "new name";
-
-                      //MessageBox.Show("work Doc "+(obj as Document).Name);
-                      DocumentWindow dw = new DocumentWindow(obj as Document);
-                      dw.Show();
-                  },
-                 (obj) => true));
-            }
-        }*/
     }
 }

@@ -80,6 +80,53 @@ namespace BNMVVM.ViewModel
             }
         }
 
-
+        public RelayCommand SubscribeCommand
+        {
+            get
+            {
+                return new RelayCommand(obj =>
+                {
+                    //MessageBox.Show("work");
+                    //c
+                    if (obj != null)
+                    {
+                        (obj as Document).Signature = Guid.NewGuid();
+                    }
+                },
+                 (obj) => true);
+            }
+        }
+        public RelayCommand NewDocumentCommand
+        {
+            get
+            {
+                return new RelayCommand(obj =>
+                {
+                    Document NewDocument = new Document();
+                    NewDocument.Name = "Новый документ";
+                    Elements.Add(NewDocument);
+                    //selectedElement = NewDocument;
+                    DocumentWindow dw = new DocumentWindow(NewDocument);
+                    dw.ShowDialog();
+                },
+                 (obj) => true);
+            }
+        }
+        public RelayCommand NewGoalCommand
+        {
+            get
+            {
+                return new RelayCommand(obj =>
+                {
+                    Goal NewGoal = new Goal();
+                    NewGoal.Name = "Новая задача";
+                    Elements.Add(NewGoal);
+                    //selectedElement = NewDocument;
+                    GoalWindow gw = new GoalWindow(NewGoal);
+                    gw.ShowDialog();
+                },
+                 (obj) => true);
+            }
+        }
     }
 }
