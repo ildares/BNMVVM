@@ -9,11 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interface\" />
-    <Folder Include="Model\" />
-    <Folder Include="Command\" />
     <Folder Include="Common\" />
-    <Folder Include="ViewModel\" />
   </ItemGroup>
 
 </Project>

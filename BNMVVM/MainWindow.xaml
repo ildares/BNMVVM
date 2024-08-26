@@ -1,4 +1,5 @@
 ﻿<Window x:Class="BNMVVM.MainWindow"
+        x:Name="mainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +7,34 @@
         xmlns:local="clr-namespace:BNMVVM"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
+    <Grid x:Name="mainGrid" DataContext="{StaticResource AppViewModel}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="37*"/>
+            <RowDefinition Height="397*"/>
+        </Grid.RowDefinitions>
+        <Button Content="Добавить документ" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Center"/>
+        <Button Grid.Column="1" Content="Добавить задачу" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Center"/>
+        <ListView Grid.Row="1" x:Name="elementList"  Grid.ColumnSpan="2" ItemsSource="{Binding Elements}" SelectedItem="{Binding SelectedElement}" VerticalAlignment="Stretch">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">Название</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Type}" Width="100">Тип</GridViewColumn>
+                    <GridViewColumn  Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Открыть" Margin="5"  
+                                Command="{Binding Source={StaticResource AppViewModel}, Path=OpenCommand}"
+                                CommandParameter ="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type ListView}}, Path=SelectedItem}"
+                                />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>
